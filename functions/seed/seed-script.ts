@@ -4,6 +4,6 @@ import MovieData from "./moviedata.json";
 admin.initializeApp();
 
 const db = admin.firestore();
-MovieData.forEach(async (movie) => {
+MovieData.forEach(async movie => {
   await db.collection("movies").add(movie);
 });

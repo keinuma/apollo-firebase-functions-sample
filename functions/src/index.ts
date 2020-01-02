@@ -1,7 +1,9 @@
 import { ApolloServer, gql } from "apollo-server-cloud-functions";
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
-import 'firebase-functions';
+import "firebase-functions";
+
+import typeDefs from "@/schema";
 
 admin.initializeApp();
 
