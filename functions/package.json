@@ -3,17 +3,18 @@
   "scripts": {
     "lint": "eslint --ext .ts,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .ts --ignore-path .gitignore .",
-    "build": "tsc",
+    "build": "webpack",
     "serve": "npm run build && firebase serve --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "engines": {
     "node": "10"
   },
+  "private": true,
   "dependencies": {
     "apollo-server-cloud-functions": "^2.9.15",
     "firebase-admin": "^8.9.0",
@@ -21,6 +22,10 @@
     "graphql": "^14.5.8"
   },
   "devDependencies": {
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2",
     "@types/graphql": "^14.5.0",
     "@types/node": "^13.1.2",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
@@ -31,6 +36,5 @@
     "firebase-functions-test": "^0.1.7",
     "prettier": "^1.19.1",
     "typescript": "^3.7.4"
-  },
-  "private": true
+  }
 }
