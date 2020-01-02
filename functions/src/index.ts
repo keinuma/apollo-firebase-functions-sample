@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from "apollo-server-cloud-functions";
+import { ApolloServer } from "apollo-server-cloud-functions";
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 import "firebase-functions";
@@ -6,34 +6,21 @@ import "firebase-functions";
 import typeDefs from "@/schema";
 
 admin.initializeApp();
-
-const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-  type Book {
-    title: String
-    author: String
-  }
-
-  type Query {
-    books: [Book]
-  }
-`;
-
-const books = [
-  {
-    title: "Harry Potter and the Chamber of Secrets",
-    author: "J.K. Rowling"
-  },
-  {
-    title: "Jurassic Park",
-    author: "Michael Crichton"
-  }
-];
+const db = admin.firestore();
 
 const resolvers = {
   Query: {
-    books: () => books
+    latestMovies: async () => {
+      const snapshot = await db
+        .collection("movies")
+        .orderBy("info.release_date", "desc")
+        .limit(10)
+        .get();
+      console.log(snapshot);
+      return snapshot.docs.map(doc => {
+        return doc.data();
+      });
+    }
   }
 };
 
