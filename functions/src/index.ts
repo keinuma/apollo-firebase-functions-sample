@@ -1,5 +1,9 @@
 import { ApolloServer, gql } from "apollo-server-cloud-functions";
+import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
+import 'firebase-functions';
+
+admin.initializeApp();
 
 const typeDefs = gql`
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.

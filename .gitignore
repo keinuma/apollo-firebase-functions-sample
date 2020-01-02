@@ -72,4 +72,4 @@ node_modules/
 typings/
 
 # Firebase project
-apollo-server-sample-1e9c7ecefe92.json
+service-account.json
