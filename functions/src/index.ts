@@ -10,10 +10,10 @@ const db = admin.firestore();
 
 const resolvers = {
   Query: {
-    latestMovies: async () => {
+    popularMovies: async () => {
       const snapshot = await db
         .collection("movies")
-        .orderBy("info.release_date", "desc")
+        .orderBy("info.rank")
         .limit(10)
         .get();
       console.log(snapshot);

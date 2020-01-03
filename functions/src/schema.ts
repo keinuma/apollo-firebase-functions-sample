@@ -20,6 +20,6 @@ export default gql`
   }
 
   type Query {
-    latestMovies: [Movie]
+    popularMovies: [Movie]
   }
 `;
