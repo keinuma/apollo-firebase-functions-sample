@@ -20,13 +20,11 @@ const resolvers = {
         .orderBy("info.rank")
         .limit(10)
         .get();
-      console.log(snapshot);
       return snapshot.docs.map(doc => {
         return doc.data();
       });
     },
     movieList: async (_: any, args: MovieListInput) => {
-      console.log(args);
       let snapshot;
       const query = db
         .collection("movies")
