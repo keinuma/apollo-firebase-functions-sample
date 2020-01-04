@@ -19,7 +19,13 @@ export default gql`
     actors: [String]
   }
 
+  type MovieListPayload {
+    movies: [Movie]
+    lastKey: String
+  }
+
   type Query {
     popularMovies: [Movie]
+    movieList(lastKey: String): MovieListPayload
   }
 `;
